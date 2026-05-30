@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Tính Lương GV - NDK - NĐ 182/2026</title>
+  <title>Tính Lương GV - NĐ 182/2026</title>
   <style>
     :root {
       --primary: #2563eb;
@@ -30,7 +30,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ===== Compact Header (1 dòng) ===== */
     header {
       background: linear-gradient(135deg, var(--primary), #1d4ed8);
       color: white;
@@ -129,7 +128,6 @@
       gap: 10px;
     }
 
-    /* Toggle Switch */
     .toggle-row {
       display: flex;
       align-items: center;
@@ -170,7 +168,6 @@
     input:checked + .slider { background-color: var(--primary); }
     input:checked + .slider:before { transform: translateX(18px); }
 
-    /* Calculate Button */
     .btn-wrapper {
       position: fixed;
       bottom: 0;
@@ -203,7 +200,6 @@
     }
     .btn-calc:active { transform: scale(0.98); }
 
-    /* ===== Result Card (1 cột) ===== */
     .result-card {
       display: none;
       border: 1.5px solid var(--primary-light);
@@ -260,6 +256,18 @@
       font-weight: 800;
       border-bottom: none;
     }
+    
+    .formula-note {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border);
+      line-height: 1.5;
+      background: #f8fafc;
+      padding: 10px;
+      border-radius: 8px;
+    }
 
     footer {
       text-align: center;
@@ -274,7 +282,6 @@
 </head>
 <body>
 
-  <!-- Header gọn 1 dòng -->
   <header>
     <h1>💰 TÍNH LƯƠNG GV</h1>
     <span class="badge">NĐ 182/2026</span>
@@ -355,15 +362,14 @@
       </div>
     </section>
 
-    <!-- Kết quả: Chỉ 1 cột -->
     <section class="card result-card" id="resultCard">
       <h2>Chi tiết Bảng lương</h2>
       <div class="result-item"><span>Lương chính:</span> <span id="resLuongChinh">0đ</span></div>
-      <div class="result-item"><span>PC Ưu đãi:</span> <span id="resPcUuDai">0đ</span></div>
       <div class="result-item"><span>PC Chức vụ:</span> <span id="resPcChucVu">0đ</span></div>
       <div class="result-item"><span>PC Khu vực:</span> <span id="resPcKhuVuc">0đ</span></div>
-      <div class="result-item"><span>PC Thâm niên:</span> <span id="resPcThamNien">0đ</span></div>
       <div class="result-item"><span>PC Vượt khung:</span> <span id="resPcVuotKhung">0đ</span></div>
+      <div class="result-item"><span>PC Thâm niên:</span> <span id="resPcThamNien">0đ</span></div>
+      <div class="result-item"><span>PC Ưu đãi:</span> <span id="resPcUuDai">0đ</span></div>
       
       <div class="result-item total"><span>TỔNG GỘP:</span> <span id="resTongGop">0đ</span></div>
       
@@ -373,6 +379,13 @@
       <div class="result-item final">
         <span>THỰC NHẬN:</span> 
         <span id="resThucNhan">0đ</span>
+      </div>
+      
+      <div class="formula-note">
+        📌 <strong>Công thức theo NĐ 182/2026:</strong><br>
+        • PC Thâm niên = (Lương chính + PC CV + PC VK) × % TN<br>
+        • PC Ưu đãi = (Lương chính + PC CV + PC VK) × % ƯĐ<br>
+        ⚠️ <em>Lưu ý: PC Ưu đãi KHÔNG bao gồm PC Thâm niên trong căn cứ tính</em>
       </div>
     </section>
   </main>
@@ -389,7 +402,6 @@
   </footer>
 
   <script>
-    // ===== Bảng lương NĐ 182/2026 =====
     const BANG_LUONG = {
       mamnon: {
         hang1: { ten: "Hạng I", bac: [4.0, 4.34, 4.68, 5.02, 5.36, 5.7, 6.04, 6.38], uudai: 45 },
@@ -477,6 +489,7 @@
     const formatVND = (num) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Math.round(num));
 
     $("btnTinhLuong").addEventListener("click", function() {
+      // 1. Lấy dữ liệu đầu vào
       const lcs = parseInt($("luongcoso").value);
       const hsl = parseFloat($("hsluong").value) || 0;
       const pcUuDai = parseFloat($("pcUuDai").value) || 0;
@@ -485,27 +498,39 @@
       const pcTN = parseFloat($("pcThamNien").value) || 0;
       const pcVK = parseFloat($("pcVuotKhung").value) || 0;
 
+      // 2. Tính các thành phần cơ bản
       const luongChinh = lcs * hsl;
       const pcChucVuTien = lcs * pcCV;
       const pcKhuVucTien = lcs * pcKV;
-      const pcThamNienTien = (luongChinh + pcChucVuTien) * (pcTN / 100);
-      const pcUuDaiTien = (luongChinh + pcThamNienTien) * (pcUuDai / 100);
+      
+      // 3. Tính PC Vượt khung
       const pcVuotKhungTien = luongChinh * (pcVK / 100);
 
+      // 4. Tính PC Thâm niên = (Lương chính + PC Chức vụ + PC Vượt khung) × % Thâm niên
+      const pcThamNienTien = (luongChinh + pcChucVuTien + pcVuotKhungTien) * (pcTN / 100);
+
+      // 5. Tính PC Ưu đãi = (Lương chính + PC Chức vụ + PC Vượt khung) × % Ưu đãi
+      // ⚠️ QUAN TRỌNG: KHÔNG bao gồm PC Thâm niên theo Điều 5 NĐ 182/2026/NĐ-CP
+      const pcUuDaiTien = (luongChinh + pcChucVuTien + pcVuotKhungTien) * (pcUuDai / 100);
+
+      // 6. Tổng lương gộp
       const tongGop = luongChinh + pcChucVuTien + pcKhuVucTien + pcThamNienTien + pcUuDaiTien + pcVuotKhungTien;
 
+      // 7. Mức đóng BHXH/BHYT = Lương chính + PC Chức vụ + PC Thâm niên + PC Vượt khung
       const baseBH = luongChinh + pcChucVuTien + pcThamNienTien + pcVuotKhungTien;
       const bhyt = baseBH * 0.015;
       const bhxh = baseBH * 0.09;
 
+      // 8. Thực nhận
       const thucNhan = tongGop - bhyt - bhxh;
 
+      // 9. Hiển thị kết quả
       $("resLuongChinh").innerText = formatVND(luongChinh);
-      $("resPcUuDai").innerText = formatVND(pcUuDaiTien);
       $("resPcChucVu").innerText = formatVND(pcChucVuTien);
       $("resPcKhuVuc").innerText = formatVND(pcKhuVucTien);
-      $("resPcThamNien").innerText = formatVND(pcThamNienTien);
       $("resPcVuotKhung").innerText = formatVND(pcVuotKhungTien);
+      $("resPcThamNien").innerText = formatVND(pcThamNienTien);
+      $("resPcUuDai").innerText = formatVND(pcUuDaiTien);
       $("resTongGop").innerText = formatVND(tongGop);
       $("resBHYT").innerText = "-" + formatVND(bhyt);
       $("resBHXH").innerText = "-" + formatVND(bhxh);
