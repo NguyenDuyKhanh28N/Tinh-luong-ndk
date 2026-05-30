@@ -3,29 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Tính Lương GV - NĐ 182/2026</title>
+  <title>Tính Lương GV - NĐ 182/2026 & NĐ 77/2021</title>
   <style>
     :root {
-      --primary: #2563eb;
-      --primary-light: #dbeafe;
-      --success: #10b981;
-      --success-light: #d1fae5;
-      --bg: #f8fafc;
+      --primary: #1e40af;
+      --primary-light: #eff6ff;
+      --primary-border: #bfdbfe;
+      --success: #059669;
+      --success-light: #ecfdf5;
+      --bg: #f1f5f9;
       --card-bg: #ffffff;
-      --text-main: #0f172a;
+      --text-main: #1e293b;
       --text-muted: #64748b;
-      --border: #e2e8f0;
-      --shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+      --border: #cbd5e1;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
       --radius: 12px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg);
       color: var(--text-main);
-      line-height: 1.4;
+      line-height: 1.5;
       padding-bottom: 90px;
       -webkit-font-smoothing: antialiased;
     }
@@ -33,7 +34,7 @@
     header {
       background: linear-gradient(135deg, var(--primary), #1d4ed8);
       color: white;
-      padding: 10px 16px;
+      padding: 12px 16px;
       position: sticky;
       top: 0;
       z-index: 50;
@@ -41,22 +42,22 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     header h1 { 
-      font-size: 0.95rem; 
+      font-size: 1rem; 
       font-weight: 700; 
       letter-spacing: -0.01em;
       white-space: nowrap;
     }
     
     header .badge {
-      font-size: 0.65rem;
-      background: rgba(255,255,255,0.2);
-      padding: 3px 8px;
+      font-size: 0.7rem;
+      background: rgba(255, 255, 255, 0.25);
+      padding: 4px 10px;
       border-radius: 20px;
-      font-weight: 500;
+      font-weight: 600;
       white-space: nowrap;
     }
 
@@ -69,16 +70,16 @@
     .card {
       background: var(--card-bg);
       border-radius: var(--radius);
-      padding: 14px;
+      padding: 16px;
       margin-bottom: 12px;
       box-shadow: var(--shadow);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(226, 232, 240, 0.8);
     }
 
     .card h2 {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       color: var(--primary);
       display: flex;
       align-items: center;
@@ -89,19 +90,19 @@
 
     .card h2::before {
       content: '';
-      width: 3px;
-      height: 12px;
+      width: 4px;
+      height: 14px;
       background: var(--primary);
       border-radius: 2px;
     }
 
-    .form-group { margin-bottom: 10px; }
+    .form-group { margin-bottom: 12px; }
     .form-group:last-child { margin-bottom: 0; }
     .form-group label {
       display: block;
       font-size: 0.75rem;
       font-weight: 600;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       color: var(--text-muted);
     }
     .form-group select, .form-group input {
@@ -109,7 +110,7 @@
       padding: 10px 12px;
       border: 1.5px solid var(--border);
       border-radius: 8px;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 500;
       background: white;
       color: var(--text-main);
@@ -118,14 +119,14 @@
     .form-group select:focus, .form-group input:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
     }
     .form-group select { cursor: pointer; }
 
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 12px;
     }
 
     .toggle-row {
@@ -133,9 +134,10 @@
       align-items: center;
       justify-content: space-between;
       background: #f8fafc;
-      padding: 8px 12px;
+      padding: 10px 12px;
       border-radius: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #e2e8f0;
     }
     .toggle-row span { font-size: 0.85rem; font-weight: 600; color: var(--text-main); }
     .switch {
@@ -173,8 +175,8 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      padding: 10px 12px;
-      background: linear-gradient(to top, rgba(248, 250, 252, 1) 70%, rgba(248, 250, 252, 0));
+      padding: 12px;
+      background: linear-gradient(to top, rgba(241, 245, 249, 1) 75%, rgba(241, 245, 249, 0));
       z-index: 100;
     }
 
@@ -183,33 +185,34 @@
       max-width: 600px;
       display: block;
       margin: 0 auto;
-      padding: 12px;
-      background: linear-gradient(135deg, var(--success), #059669);
+      padding: 14px;
+      background: linear-gradient(135deg, var(--success), #047857);
       color: white;
       border: none;
       border-radius: 10px;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       letter-spacing: 0.05em;
+      transition: all 0.2s;
     }
-    .btn-calc:active { transform: scale(0.98); }
+    .btn-calc:active { transform: scale(0.98); box-shadow: 0 2px 6px rgba(5, 150, 105, 0.3); }
 
     .result-card {
       display: none;
-      border: 1.5px solid var(--primary-light);
+      border: 1.5px solid var(--primary-border);
     }
     .result-card.active {
       display: block;
-      animation: slideUp 0.3s ease-out;
+      animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     @keyframes slideUp {
-      from { opacity: 0; transform: translateY(15px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -217,9 +220,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 7px 0;
+      padding: 8px 0;
       font-size: 0.85rem;
-      border-bottom: 1px dashed var(--border);
+      border-bottom: 1px dashed #e2e8f0;
     }
     .result-item:last-child { border-bottom: none; }
     .result-item span:first-child { 
@@ -238,42 +241,44 @@
       font-weight: 700;
       font-size: 0.95rem;
       color: var(--primary);
-      margin-top: 6px;
-      padding-top: 8px;
-      border-top: 1.5px solid var(--border);
+      margin-top: 8px;
+      padding-top: 10px;
+      border-top: 1.5px solid #cbd5e1;
       border-bottom: none;
     }
     
-    .result-item.deduction span:last-child { color: #ef4444; font-weight: 500; }
+    .result-item.deduction span:last-child { color: #ef4444; font-weight: 600; }
     
     .result-item.final {
       background: var(--success-light);
-      margin: 10px -14px -14px -14px;
-      padding: 14px;
+      margin: 12px -16px -16px -16px;
+      padding: 16px;
       border-radius: 0 0 12px 12px;
       color: #065f46;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 800;
       border-bottom: none;
+      border-top: 1px solid rgba(16, 185, 129, 0.2);
     }
     
     .formula-note {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
-      margin-top: 8px;
-      padding-top: 8px;
-      border-top: 1px dashed var(--border);
-      line-height: 1.5;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed #cbd5e1;
+      line-height: 1.6;
       background: #f8fafc;
-      padding: 10px;
+      padding: 12px;
       border-radius: 8px;
+      border: 1px solid #e2e8f0;
     }
 
     footer {
       text-align: center;
-      padding: 12px;
+      padding: 16px 12px;
       color: var(--text-muted);
-      font-size: 0.7rem;
+      font-size: 0.75rem;
     }
 
     .hidden { display: none !important; }
@@ -293,7 +298,7 @@
       <div class="form-group">
         <select id="luongcoso">
           <option value="2340000">2.340.000đ (Hiện hành)</option>
-          <option value="2530000">2.530.000đ (Dự kiến 01/07/2026)</option>
+          <option value="2530000" selected>2.530.000đ (Hiện hành từ 01/07/2026)</option>
         </select>
       </div>
     </section>
@@ -316,7 +321,17 @@
         </div>
         <div class="form-group">
           <label>PC Ưu đãi (%)</label>
-          <input type="number" id="pcUuDai" value="45" readonly class="readonly-bg">
+          <select id="pcUuDai">
+            <option value="20">20% (Nhân sự hỗ trợ)</option>
+            <option value="25">25% (Giảng dạy ĐH vùng thường)</option>
+            <option value="30">30% (Giảng dạy CĐ, TC, TT chính trị)</option>
+            <option value="35">35% (TT GDNN vùng DTTS, biên giới...)</option>
+            <option value="40">40% (Giáo viên THCS, THPT thường)</option>
+            <option value="45" selected>45% (Giáo viên MN, TH thường / THCS, THPT vùng DTTS, biên giới...)</option>
+            <option value="60">60% (Trường bán trú, năng khiếu; MN, TH vùng DTTS, biên giới...)</option>
+            <option value="70">70% (Nhà giáo vùng ĐB khó khăn; khuyết tật chuyên trách)</option>
+            <option value="80">80% (Trường PTDT nội trú, khuyết tật lớp riêng, vùng đặc biệt khó khăn đặc thù)</option>
+          </select>
         </div>
       </div>
     </section>
@@ -324,7 +339,7 @@
     <section class="card">
       <h2>3. Bậc lương & Hệ số</h2>
       <div class="toggle-row">
-        <span>Chọn theo Bảng lương</span>
+        <span>Chọn theo Bảng lương định sẵn</span>
         <label class="switch">
           <input type="checkbox" id="toggleManual" checked>
           <span class="slider"></span>
@@ -344,11 +359,11 @@
       <h2>4. Phụ cấp khác</h2>
       <div class="form-grid">
         <div class="form-group">
-          <label>PC Chức vụ (HS)</label>
+          <label>PC Chức vụ (Hệ số)</label>
           <input type="number" id="pcChucVu" step="0.01" value="0">
         </div>
         <div class="form-group">
-          <label>PC Khu vực (HS)</label>
+          <label>PC Khu vực (Hệ số)</label>
           <input type="number" id="pcKhuVuc" step="0.1" value="0">
         </div>
         <div class="form-group">
@@ -364,17 +379,17 @@
 
     <section class="card result-card" id="resultCard">
       <h2>Chi tiết Bảng lương</h2>
-      <div class="result-item"><span>Lương chính:</span> <span id="resLuongChinh">0đ</span></div>
-      <div class="result-item"><span>PC Chức vụ:</span> <span id="resPcChucVu">0đ</span></div>
+      <div class="result-item"><span>Lương chính (theo ngạch/bậc):</span> <span id="resLuongChinh">0đ</span></div>
+      <div class="result-item"><span>PC Chức vụ lãnh đạo:</span> <span id="resPcChucVu">0đ</span></div>
       <div class="result-item"><span>PC Khu vực:</span> <span id="resPcKhuVuc">0đ</span></div>
-      <div class="result-item"><span>PC Vượt khung:</span> <span id="resPcVuotKhung">0đ</span></div>
-      <div class="result-item"><span>PC Thâm niên:</span> <span id="resPcThamNien">0đ</span></div>
-      <div class="result-item"><span>PC Ưu đãi:</span> <span id="resPcUuDai">0đ</span></div>
+      <div class="result-item"><span>PC Vượt khung (thâm niên VK):</span> <span id="resPcVuotKhung">0đ</span></div>
+      <div class="result-item"><span>PC Thâm niên nhà giáo:</span> <span id="resPcThamNien">0đ</span></div>
+      <div class="result-item"><span>PC Ưu đãi nghề:</span> <span id="resPcUuDai">0đ</span></div>
       
-      <div class="result-item total"><span>TỔNG GỘP:</span> <span id="resTongGop">0đ</span></div>
+      <div class="result-item total"><span>TỔNG GỘP (Thu nhập trước bảo hiểm):</span> <span id="resTongGop">0đ</span></div>
       
       <div class="result-item deduction"><span>Trừ BHYT (1.5%):</span> <span id="resBHYT">-0đ</span></div>
-      <div class="result-item deduction"><span>Trừ BHXH, BHTN (9%):</span> <span id="resBHXH">-0đ</span></div>
+      <div class="result-item deduction"><span>Trừ BHXH, BHTN (9.0%):</span> <span id="resBHXH">-0đ</span></div>
       
       <div class="result-item final">
         <span>THỰC NHẬN:</span> 
@@ -382,10 +397,11 @@
       </div>
       
       <div class="formula-note">
-        📌 <strong>Công thức theo NĐ 182/2026:</strong><br>
-        • PC Thâm niên = (Lương chính + PC CV + PC VK) × % TN<br>
-        • PC Ưu đãi = (Lương chính + PC CV + PC VK) × % ƯĐ<br>
-        ⚠️ <em>Lưu ý: PC Ưu đãi KHÔNG bao gồm PC Thâm niên trong căn cứ tính</em>
+        📝 <strong>Căn cứ tính toán và văn bản quy phạm pháp luật:</strong><br>
+        • <strong>Mức lương chính:</strong> = Hệ số lương × Lương cơ sở.<br>
+        • <strong>PC Ưu đãi nghề (NĐ 182/2026/NĐ-CP):</strong> = (Hệ số lương + Hệ số PC Chức vụ + Hệ số PC Vượt khung) × Lương cơ sở × % Ưu đãi.<br>
+        • <strong>PC Thâm niên nghề (NĐ 77/2021/NĐ-CP):</strong> = (Hệ số lương + Hệ số PC Chức vụ + Hệ số PC Vượt khung) × Lương cơ sở × % Thâm niên.<br>
+        • <strong>Bảo hiểm (Tổng 10.5%):</strong> Khấu trừ 1.5% BHYT và 9% (BHXH + BHTN) trên tổng tiền lương tính đóng bảo hiểm (gồm Lương chính, PC Chức vụ, PC Vượt khung và PC Thâm niên).
       </div>
     </section>
   </main>
@@ -393,7 +409,7 @@
   <div class="btn-wrapper">
     <button class="btn-calc" id="btnTinhLuong">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg>
-      TÍNH LƯƠNG
+      TÍNH LƯƠNG CHÍNH XÁC
     </button>
   </div>
 
@@ -465,7 +481,8 @@
     function updatePcUuDai() {
       const cap = $("capday").value;
       const hang = $("hang").value;
-      $("pcUuDai").value = BANG_LUONG[cap][hang].uudai;
+      const defaultUuDai = BANG_LUONG[cap][hang].uudai;
+      $("pcUuDai").value = defaultUuDai;
     }
 
     $("toggleManual").addEventListener("change", function() {
@@ -498,33 +515,35 @@
       const pcTN = parseFloat($("pcThamNien").value) || 0;
       const pcVK = parseFloat($("pcVuotKhung").value) || 0;
 
-      // 2. Tính các thành phần cơ bản
+      // 2. Tính lương chính và các hệ số phụ cấp quy đổi tiền tệ
       const luongChinh = lcs * hsl;
       const pcChucVuTien = lcs * pcCV;
       const pcKhuVucTien = lcs * pcKV;
       
-      // 3. Tính PC Vượt khung
+      // 3. Phụ cấp thâm niên vượt khung (được tính trên lương chính theo ngạch/bậc)
       const pcVuotKhungTien = luongChinh * (pcVK / 100);
 
-      // 4. Tính PC Thâm niên = (Lương chính + PC Chức vụ + PC Vượt khung) × % Thâm niên
-      const pcThamNienTien = (luongChinh + pcChucVuTien + pcVuotKhungTien) * (pcTN / 100);
+      // Căn cứ tính phụ cấp ưu đãi & thâm niên = lương chính + phụ cấp chức vụ + phụ cấp vượt khung
+      const baseAllowances = luongChinh + pcChucVuTien + pcVuotKhungTien;
 
-      // 5. Tính PC Ưu đãi = (Lương chính + PC Chức vụ + PC Vượt khung) × % Ưu đãi
-      // ⚠️ QUAN TRỌNG: KHÔNG bao gồm PC Thâm niên theo Điều 5 NĐ 182/2026/NĐ-CP
-      const pcUuDaiTien = (luongChinh + pcChucVuTien + pcVuotKhungTien) * (pcUuDai / 100);
+      // 4. Tính PC Thâm niên nghề = (Lương chính + PC Chức vụ + PC Vượt khung) × % Thâm niên (NĐ 77/2021)
+      const pcThamNienTien = baseAllowances * (pcTN / 100);
 
-      // 6. Tổng lương gộp
-      const tongGop = luongChinh + pcChucVuTien + pcKhuVucTien + pcThamNienTien + pcUuDaiTien + pcVuotKhungTien;
+      // 5. Tính PC Ưu đãi theo nghề = (Lương chính + PC Chức vụ + PC Vượt khung) × % Ưu đãi (NĐ 182/2026)
+      const pcUuDaiTien = baseAllowances * (pcUuDai / 100);
 
-      // 7. Mức đóng BHXH/BHYT = Lương chính + PC Chức vụ + PC Thâm niên + PC Vượt khung
-      const baseBH = luongChinh + pcChucVuTien + pcThamNienTien + pcVuotKhungTien;
-      const bhyt = baseBH * 0.015;
-      const bhxh = baseBH * 0.09;
+      // 6. Tổng lương gộp nhận được trước thuế và bảo hiểm
+      const tongGop = luongChinh + pcChucVuTien + pcKhuVucTien + pcVuotKhungTien + pcThamNienTien + pcUuDaiTien;
+
+      // 7. Mức đóng BHXH/BHYT/BHTN = Lương chính + PC Chức vụ + PC Vượt khung + PC Thâm niên nghề
+      const baseBH = luongChinh + pcChucVuTien + pcVuotKhungTien + pcThamNienTien;
+      const bhyt = baseBH * 0.015;  // 1.5% BHYT
+      const bhxh = baseBH * 0.09;   // 9% gồm (8% BHXH bắt buộc + 1% BHTN)
 
       // 8. Thực nhận
       const thucNhan = tongGop - bhyt - bhxh;
 
-      // 9. Hiển thị kết quả
+      // 9. Hiển thị kết quả chi tiết
       $("resLuongChinh").innerText = formatVND(luongChinh);
       $("resPcChucVu").innerText = formatVND(pcChucVuTien);
       $("resPcKhuVuc").innerText = formatVND(pcKhuVucTien);
